@@ -1,8 +1,7 @@
 Raffler.EntriesController = Ember.ArrayController.extend
-  addEntry: ->
-    Raffler.Entry.createRecord(name: @get('newEntryName'))
+  addEntry: (name) ->
+    Raffler.Entry.createRecord(name: name)
     @get('store').commit()
-    @set('newEntryName', "")
 
   drawWinner: ->
     @setEach('highlight', false)
@@ -14,5 +13,5 @@ Raffler.EntriesController = Ember.ArrayController.extend
       @get('store').commit()
 
   allWinners: (->
-    @everyProperty('winner')
+    @everyProperty('winner', true)
   ).property('@each.winner')
